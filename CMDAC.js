@@ -2,6 +2,7 @@ const array = ["full", "out", "@", "home", "fixture", "group", "sub", "cue", "ef
 const cmdline = document.getElementById("CMDLine");
 var id = 1;
 
+
 cmdline.addEventListener("keyup", () => {
     var tempString = "";
     var lastIndex = cmdline.value.lastIndexOf(" ");
@@ -15,6 +16,7 @@ cmdline.addEventListener("keyup", () => {
         tempString = cmdline.value.substr(lastIndex + 1, cmdline.value.lastIndexOf(""));
         console.log(tempString);
     }
+    console.log(tempString);
     // End.
     // Start: Filtering through the array and grabbing elements that include the value of tempString
     if (cmdline.value === "") {
@@ -30,11 +32,30 @@ cmdline.addEventListener("keyup", () => {
             }
         })
         console.log(suggestions);
-        for (let index = 0; index < suggestions.length; index++) {
-            const element = suggestions[index];
-            document.getElementById("Button-" + index).innerHTML = element;
+        if (cmdline.value.charAt(cmdline.value.length - 1) === " ") {
+            console.log("I'm in");
+            for (let index = 0; index < suggestions.length; index++) {
+                const element = suggestions[index];
+                document.getElementById("Button-" + index).innerHTML = "";
+            }
+            id = 1;
+            console.log(id);
+        } else {
+            for (let index = 0; index < suggestions.length; index++) {
+                const element = suggestions[index];
+                document.getElementById("Button-" + index).innerHTML = element;
+            }
+            for (let index = 4; index >= suggestions.length; index--) {
+                const element = array[index];
+                document.getElementById("Button-" + index).innerHTML = "";
+            }
+            suggestions = [];
         }
-        suggestions = [];
     }
     // End.
 });
+
+
+// buttonToInputBox((buttonID, innerHTML) => {
+//     document.get
+// })
