@@ -1,0 +1,65 @@
+body{
+    padding: 10px;
+    font-family: Arial;
+    background-color: rgb(26, 26, 26);
+}
+#Container{
+    display: block;
+    margin: 0 auto;
+    color: whitesmoke;
+}
+#Header{
+    text-align: center;
+}
+#Container-CMD{
+    display: block;
+    margin: 0 auto;
+    width: 550px;
+}
+#Nav-CMD{
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+}
+#CMDLine{
+    display: block;
+    margin: 0 auto;
+    border-style: solid solid hidden solid;
+    width: 544px;
+    height: 30px;
+    color: whitesmoke;
+    font-size: 14px;
+    background-color: rgb(20, 20, 20);
+    float: left;
+}
+#CMDLine:focus{
+    outline: none;
+}
+#Suggestions{
+    display: block;
+    margin: 0 auto;
+    width: 550px;
+}
+.Buttons{
+    border-top: hidden;
+    width: 110px;
+    height: 30px;
+    color: whitesmoke;
+    text-align: left;
+    background-color: rgb(20, 20, 20);
+    overflow: hidden;
+    float: left;
+    cursor: pointer;
+}
+.Buttons:not(:first-child){
+    border-left: hidden;
+}
+.Buttons:not(:last-child){
+    border-right: hidden;
+}
+.Buttons:hover{
+    background-color: rgb(8, 142, 219);
+}
+.Buttons:focus{
+    outline: none;
+}
