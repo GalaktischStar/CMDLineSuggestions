@@ -1,33 +1,37 @@
 const array = ["full", "out", "@", "home", "fixture", "group", "sub", "cue", "effect", "thru", "+", "-"];
 const cmdline = document.getElementById("CMDLine");
+const button0 = document.getElementById("Button-0");
+const button1 = document.getElementById("Button-1");
+const button2 = document.getElementById("Button-2");
+const button3 = document.getElementById("Button-3");
+const button4 = document.getElementById("Button-4");
 var id = 1;
 
 
 cmdline.addEventListener("keyup", () => {
-    var tempString = "";
+    var subStr = "";
     var lastIndex = cmdline.value.lastIndexOf(" ");
     var suggestions = [];
     // Start: Creating substrings to be used through filter function
-    if (lastIndex === -1) {
+    if (cmdline.value.lastIndexOf(" ") === -1) {
         lastIndex = 0;
-        tempString = cmdline.value.substr(lastIndex, cmdline.value.lastIndexOf(""));
-        console.log(tempString);
+        subStr = cmdline.value.substr(lastIndex, cmdline.value.lastIndexOf(""));
+        console.log(subStr);
     } else {
-        tempString = cmdline.value.substr(lastIndex + 1, cmdline.value.lastIndexOf(""));
-        console.log(tempString);
+        subStr = cmdline.value.substr(lastIndex + 1, cmdline.value.lastIndexOf(""));
+        console.log(subStr);
     }
-    console.log(tempString);
+    console.log(subStr);
     // End.
-    // Start: Filtering through the array and grabbing elements that include the value of tempString
+    // Start: Filtering through the array and grabbing elements that include the value of subStr
     if (cmdline.value === "") {
         id = 1;
-        length = 0;
         for (let index = 0; index < 6; index++) {
             document.getElementById("Button-" + index).innerHTML = "";
         }
     } else {
         array.filter((str) => {
-            if (str.includes(tempString)) {
+            if (str.includes(subStr)) {
                 suggestions.push(str);
             }
         })
@@ -56,6 +60,37 @@ cmdline.addEventListener("keyup", () => {
 });
 
 
-// buttonToInputBox((buttonID, innerHTML) => {
-//     document.get
-// })
+function buttonToInput(args) {
+    var string = null;
+    if (cmdline.value.lastIndexOf(" ") === -1) {
+        console.log("It's -1");
+        cmdline.value = args;
+    } else {
+        cmdline.value.substr(cmdline.value.lastIndexOf(" "), cmdline.value.lastIndexOf("")) = args;
+    }
+}
+
+
+button0.addEventListener("click", () => {
+    buttonToInput(button0.innerHTML);
+});
+
+
+button1.addEventListener("click", () => {
+    buttonToInput(button1.innerHTML);
+});
+
+
+button2.addEventListener("click", () => {
+    buttonToInput(button2.innerHTML);
+});
+
+
+button3.addEventListener("click", () => {
+    buttonToInput(button3.innerHTML);
+});
+
+
+button4.addEventListener("click", () => {
+    buttonToInput(button4.innerHTML);
+});
