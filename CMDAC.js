@@ -61,12 +61,13 @@ cmdline.addEventListener("keyup", () => {
 
 
 function buttonToInput(args) {
-    var string = null;
+    var string = "";
     if (cmdline.value.lastIndexOf(" ") === -1) {
-        console.log("It's -1");
         cmdline.value = args;
     } else {
-        cmdline.value.substr(cmdline.value.lastIndexOf(" "), cmdline.value.lastIndexOf("")) = args;
+        string = cmdline.value.substr(0, cmdline.value.lastIndexOf(" ")) + " " + args;
+        console.log(string);
+        cmdline.value = string;
     }
 }
 
