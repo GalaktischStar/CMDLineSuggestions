@@ -65,7 +65,7 @@ function buttonToInput(args) {
     if (cmdline.value.lastIndexOf(" ") === -1) {
         cmdline.value = args;
     } else {
-        string = cmdline.value.substr(0, cmdline.value.lastIndexOf(" ")) + " " + args;
+        string = cmdline.value.substr(0, cmdline.value.lastIndexOf(" ")) + " " + args + " ";
         console.log(string);
         cmdline.value = string;
     }
@@ -95,3 +95,9 @@ button3.addEventListener("click", () => {
 button4.addEventListener("click", () => {
     buttonToInput(button4.innerHTML);
 });
+
+
+// Arrow key up and down for scroling through buttons
+// Arrow key left and right reserved for navigating the CMDLine
+
+
