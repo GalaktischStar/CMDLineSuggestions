@@ -61,5 +61,5 @@ body{
     background-color: rgb(8, 142, 219);
 }
 .Buttons:focus{
-    outline: none;
+    background-color: rgb(8, 142, 219);
 }
