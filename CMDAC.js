@@ -37,13 +37,11 @@ cmdline.addEventListener("keyup", () => {
         })
         console.log(suggestions);
         if (cmdline.value.charAt(cmdline.value.length - 1) === " ") {
-            console.log("I'm in");
             for (let index = 0; index < suggestions.length; index++) {
                 const element = suggestions[index];
                 document.getElementById("Button-" + index).innerHTML = "";
             }
             id = 1;
-            console.log(id);
         } else {
             for (let index = 0; index < suggestions.length; index++) {
                 const element = suggestions[index];
@@ -63,7 +61,7 @@ cmdline.addEventListener("keyup", () => {
 function buttonToInput(args) {
     var string = "";
     if (cmdline.value.lastIndexOf(" ") === -1) {
-        cmdline.value = args;
+        cmdline.value = args + " ";
     } else {
         string = cmdline.value.substr(0, cmdline.value.lastIndexOf(" ")) + " " + args + " ";
         console.log(string);
@@ -74,30 +72,54 @@ function buttonToInput(args) {
 
 button0.addEventListener("click", () => {
     buttonToInput(button0.innerHTML);
+    cmdline.focus();
 });
 
 
 button1.addEventListener("click", () => {
     buttonToInput(button1.innerHTML);
+    cmdline.focus();
 });
 
 
 button2.addEventListener("click", () => {
     buttonToInput(button2.innerHTML);
+    cmdline.focus();
 });
 
 
 button3.addEventListener("click", () => {
     buttonToInput(button3.innerHTML);
+    cmdline.focus();
 });
 
 
 button4.addEventListener("click", () => {
     buttonToInput(button4.innerHTML);
+    cmdline.focus();
 });
 
 
 // Arrow key up and down for scroling through buttons
 // Arrow key left and right reserved for navigating the CMDLine
+function arrowKeyMove(move) {
+    var iterator = 0;
+    if (move === "Right") {
+
+        iterator++;
+    }
+    if (move === "Left") {
+
+        iterator--;
+    }
+}
 
 
+document.onkeydown = () => {
+    if (event.keyCode === 38) {
+        arrowKeyMove("Right");
+    }
+    if (event.keyCode === 40) {
+        arrowKeyMove("Left");
+    }
+}
