@@ -1,11 +1,8 @@
 const array = ["full", "out", "@", "home", "fixture", "group", "sub", "cue", "effect", "thru", "+", "-"];
 const cmdline = document.getElementById("CMDLine");
-const button0 = document.getElementById("Button-0");
-const button1 = document.getElementById("Button-1");
-const button2 = document.getElementById("Button-2");
-const button3 = document.getElementById("Button-3");
-const button4 = document.getElementById("Button-4");
+var iterator = 0;
 var id = 1;
+var bool = true;
 
 
 cmdline.addEventListener("keyup", () => {
@@ -58,6 +55,7 @@ cmdline.addEventListener("keyup", () => {
 });
 
 
+// Start: Takes the inner HTML of a button and pushes it to the CMDLine
 function buttonToInput(args) {
     var string = "";
     if (cmdline.value.lastIndexOf(" ") === -1) {
@@ -68,53 +66,90 @@ function buttonToInput(args) {
         cmdline.value = string;
     }
 }
+// End
 
 
-button0.addEventListener("click", () => {
-    buttonToInput(button0.innerHTML);
+// Start: Event listeners for each button that will pass the inner HTMl of the pressed button
+// into the buttonToInput function. Resets arrowkey variables
+document.getElementById("Button-0").addEventListener("click", () => {
+    buttonToInput(document.getElementById("Button-0").innerHTML);
     cmdline.focus();
+    bool = true;
+    iterator = 0;
 });
 
 
-button1.addEventListener("click", () => {
-    buttonToInput(button1.innerHTML);
+document.getElementById("Button-1").addEventListener("click", () => {
+    buttonToInput(document.getElementById("Button-1").innerHTML);
     cmdline.focus();
+    bool = true;
+    iterator = 0;
 });
 
 
-button2.addEventListener("click", () => {
-    buttonToInput(button2.innerHTML);
+document.getElementById("Button-2").addEventListener("click", () => {
+    buttonToInput(document.getElementById("Button-2").innerHTML);
     cmdline.focus();
+    bool = true;
+    iterator = 0;
 });
 
 
-button3.addEventListener("click", () => {
-    buttonToInput(button3.innerHTML);
+document.getElementById("Button-3").addEventListener("click", () => {
+    buttonToInput(document.getElementById("Button-3").innerHTML);
     cmdline.focus();
+    bool = true;
+    iterator = 0;
 });
 
 
-button4.addEventListener("click", () => {
-    buttonToInput(button4.innerHTML);
+document.getElementById("Button-4").addEventListener("click", () => {
+    buttonToInput(document.getElementById("Button-4").innerHTML);
     cmdline.focus();
+    bool = true;
+    iterator = 0;
 });
+// End
 
 
 // Arrow key up and down for scroling through buttons
 // Arrow key left and right reserved for navigating the CMDLine
+// Start: Function checks if an arrow key has been pressed or not and sets focus to the first
+// button, if a button has already been pressed the function will iterate through all buttons
+// in accordance to the key that has been pressed
 function arrowKeyMove(move) {
-    var iterator = 0;
-    if (move === "Right") {
-
-        iterator++;
+    if (bool === false) {
+        if (move === "Right") {
+            iterator++;
+            if (iterator === 5) {
+                iterator = 0;
+            }
+            if ((iterator < 5) && (iterator > -1)) {
+                console.log(iterator);
+                document.getElementById("Button-" + iterator).focus();
+            }
+            
+        }
+        if (move === "Left") {
+            iterator--;
+            if (iterator === -1) {
+                iterator = 4;
+            }
+            if ((iterator < 5) && (iterator > -1)) {
+                console.log(iterator)
+                document.getElementById("Button-" + iterator).focus();
+            }
+        }
     }
-    if (move === "Left") {
-
-        iterator--;
+    if (bool === true) {
+        document.getElementById("Button-0").focus();
+        bool = false;
     }
 }
+// End
 
 
+// Start: Checks keycode of button pressed and passes arrowkey direction into arrowKeyMove
 document.onkeydown = () => {
     if (event.keyCode === 38) {
         arrowKeyMove("Right");
@@ -123,3 +158,4 @@ document.onkeydown = () => {
         arrowKeyMove("Left");
     }
 }
+// End
