@@ -36,7 +36,10 @@ cmdline.addEventListener("keyup", () => {
         if (cmdline.value.charAt(cmdline.value.length - 1) === " ") {
             for (let index = 0; index < suggestions.length; index++) {
                 const element = suggestions[index];
-                document.getElementById("Button-" + index).innerHTML = "";
+                console.log(index);
+                if (index < 5) {
+                    document.getElementById("Button-" + index).innerHTML = "";
+                }
             }
             id = 1;
         } else {
