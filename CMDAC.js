@@ -13,18 +13,17 @@ cmdline.addEventListener("keyup", () => {
     if (cmdline.value.lastIndexOf(" ") === -1) {
         lastIndex = 0;
         subStr = cmdline.value.substr(lastIndex, cmdline.value.lastIndexOf(""));
-        console.log(subStr);
     } else {
         subStr = cmdline.value.substr(lastIndex + 1, cmdline.value.lastIndexOf(""));
-        console.log(subStr);
     }
-    console.log(subStr);
     // End.
     // Start: Filtering through the array and grabbing elements that include the value of subStr
     if (cmdline.value === "") {
         id = 1;
-        for (let index = 0; index < 6; index++) {
-            document.getElementById("Button-" + index).innerHTML = "";
+        if (cmdline.value !== "") {
+            for (let index = 0; index < 6; index++) {
+                document.getElementById("Button-" + index).innerHTML = "";
+            }
         }
     } else {
         array.filter((str) => {
@@ -32,11 +31,9 @@ cmdline.addEventListener("keyup", () => {
                 suggestions.push(str);
             }
         })
-        console.log(suggestions);
         if (cmdline.value.charAt(cmdline.value.length - 1) === " ") {
             for (let index = 0; index < suggestions.length; index++) {
                 const element = suggestions[index];
-                console.log(index);
                 if (index < 5) {
                     document.getElementById("Button-" + index).innerHTML = "";
                 }
@@ -65,7 +62,6 @@ function buttonToInput(args) {
         cmdline.value = args + " ";
     } else {
         string = cmdline.value.substr(0, cmdline.value.lastIndexOf(" ")) + " " + args + " ";
-        console.log(string);
         cmdline.value = string;
     }
 }
@@ -128,7 +124,6 @@ function arrowKeyMove(move) {
                 iterator = 0;
             }
             if ((iterator < 5) && (iterator > -1)) {
-                console.log(iterator);
                 document.getElementById("Button-" + iterator).focus();
             }
             
@@ -139,7 +134,6 @@ function arrowKeyMove(move) {
                 iterator = 4;
             }
             if ((iterator < 5) && (iterator > -1)) {
-                console.log(iterator)
                 document.getElementById("Button-" + iterator).focus();
             }
         }
@@ -155,14 +149,15 @@ function arrowKeyMove(move) {
 // Start: Grabs text content of the current element that has focus
 function tabComplete() {
     var buttonInnerText = document.activeElement.textContent;
-    console.log(iterator);
     if (cmdline.value.lastIndexOf(" ") === -1) {
         cmdline.value = buttonInnerText + " ";
     } else {
         string = cmdline.value.substr(0, cmdline.value.lastIndexOf(" ")) + " " + buttonInnerText + " ";
-        console.log(string);
         cmdline.value = string;
     }
+    cmdline.focus();
+    bool = true;
+    iterator = 0;
 }
 // End
 
