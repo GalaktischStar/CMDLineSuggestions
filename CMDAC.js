@@ -149,6 +149,21 @@ function arrowKeyMove(move) {
 // End
 
 
+// Start: Grabs text content of the current element that has focus
+function tabComplete() {
+    var buttonInnerText = document.activeElement.textContent;
+    console.log(iterator);
+    if (cmdline.value.lastIndexOf(" ") === -1) {
+        cmdline.value = buttonInnerText + " ";
+    } else {
+        string = cmdline.value.substr(0, cmdline.value.lastIndexOf(" ")) + " " + buttonInnerText + " ";
+        console.log(string);
+        cmdline.value = string;
+    }
+}
+// End
+
+
 // Start: Checks keycode of button pressed and passes arrowkey direction into arrowKeyMove
 document.onkeydown = () => {
     if (event.keyCode === 38) {
@@ -156,6 +171,10 @@ document.onkeydown = () => {
     }
     if (event.keyCode === 40) {
         arrowKeyMove("Left");
+    }
+    if (event.keyCode === 9) {
+        event.preventDefault();
+        tabComplete();
     }
 }
 // End
